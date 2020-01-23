@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE workflow-forms PUBLIC "-//OpenKM//DTD Workflow Forms 2.4//EN"
+                                "http://www.openkm.com/dtd/workflow-forms-2.4.dtd">
+<workflow-forms>
+
+	<workflow-form task="reviewer">
+		<textarea name="obs" label="Comentario" />
+		<button name="approve" label="Aprobar" transition="to metadata_reviewed" style="yes" />
+		<button name="deny" label="Rechazar" transition="to correction" style="no" />
+		<button name="cancel" label="Cancelar Flujo" transition="to cancelation" style="delete" />
+	</workflow-form>
+	
+	<workflow-form task="approver">
+		<textarea name="obs" label="Observaciones" readonly="true" data="obs" />
+		<button name="approve" label="Aprobar" transition="to metadata_approved" style="yes" />
+		<button name="deny" label="Rechazar" transition="to cancelation" style="no" />
+	</workflow-form>
+	
+	<workflow-form task="correction">
+		<textarea name="obs" label="Observaciones" readonly="true" data="obs" />
+		<button name="done" label="Hecho" transition="to reviewer" style="yes" />
+		<button name="cancel" label="Cancelar Flujo" transition="to cancelation" style="delete" />
+	</workflow-form>
+	
+</workflow-forms>

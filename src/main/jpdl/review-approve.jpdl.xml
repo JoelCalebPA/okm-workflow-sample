@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<process-definition xmlns="urn:jbpm.org:jpdl-3.2"
+	name="review-approve">
+
+	<swimlane name="initiator"></swimlane>
+
+	<start-state name="start-state">
+		<task swimlane="initiator" />
+		<transition to="metadata_created" name="to metadata_created"></transition>
+	</start-state>
+
+	<node name="metadata_created">
+		<action name="metadata_created"
+			class="com.openkm.workflow.action.ChangeMetadataAction">
+			<status>
+				created
+			</status>
+		</action>
+		<transition to="reviewer" name="to reviewer"></transition>
+	</node>
+
+	<task-node name="reviewer">
+		<task name="reviewer">
+			<assignment actor-id="reviewer"></assignment>
+		</task>
+		<transition to="metadata_reviewed" name="to metadata_reviewed"></transition>
+		<transition to="correction" name="to correction"></transition>
+		<transition to="cancelation" name="to cancelation"></transition>
+	</task-node>
+
+	<node name="metadata_reviewed">
+		<action name="metadata_reviewed"
+			class="com.openkm.workflow.action.ChangeMetadataAction">
+			<status>
+				reviewed
+			</status>
+		</action>
+		<transition to="approver" name="to approver"></transition>
+	</node>
+
+	<task-node name="approver">
+		<task name="approver">
+			<assignment actor-id="approver"></assignment>
+		</task>
+		<transition to="cancelation" name="to cancelation"></transition>
+		<transition to="metadata_approved"
+			name="to metadata_approved"></transition>
+	</task-node>
+
+	<task-node name="correction">
+		<task swimlane="initiator" name="correction"></task>
+		<transition to="reviewer" name="to reviewer"></transition>
+		<transition to="cancelation" name="to cancelation"></transition>
+	</task-node>
+
+	<node name="cancelation">
+		<action name="cancelation" class="com.openkm.workflow.action.ChangeMetadataAction">
+			<status>
+				canceled
+			</status>
+		</action>
+		<transition to="end-state" name="to end-state"></transition>
+	</node>
+
+	<node name="metadata_approved">
+		<action class="com.openkm.workflow.action.ChangeMetadataAction"
+			name="metadata_approved">
+			<status>
+				approved
+			</status>
+		</action>
+		<transition to="end-state" name="to end-state"></transition>
+	</node>
+
+	<end-state name="end-state"></end-state>
+
+</process-definition>

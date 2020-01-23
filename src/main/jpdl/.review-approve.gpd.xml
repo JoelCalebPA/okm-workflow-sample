@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root-container name="review-approve" width="876" height="310">
+  <node name="start-state" x="28" y="182" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="metadata_created" x="148" y="98" width="132" height="36">
+    <edge>
+      <label x="-23" y="-41"/>
+      <bendpoint w1="0" h1="87" w2="-116" h2="5"/>
+    </edge>
+  </node>
+  <node name="reviewer" x="264" y="180" width="132" height="36">
+    <edge>
+      <label x="-62" y="-45"/>
+      <bendpoint w1="1" h1="84" w2="-114" h2="3"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+  </node>
+  <node name="metadata_reviewed" x="374" y="261" width="143" height="36">
+    <edge>
+      <label x="-24" y="42"/>
+      <bendpoint w1="0" h1="-82" w2="-116" h2="1"/>
+    </edge>
+  </node>
+  <node name="approver" x="495" y="178" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+    </edge>
+    <edge>
+      <label x="-54" y="-42"/>
+      <bendpoint w1="1" h1="83" w2="-115" h2="2"/>
+    </edge>
+  </node>
+  <node name="correction" x="379" y="4" width="132" height="36">
+    <edge>
+      <label x="-26" y="-15"/>
+      <bendpoint w1="-115" h1="-1" w2="0" h2="-89"/>
+    </edge>
+    <edge>
+      <label x="-40" y="-16"/>
+      <bendpoint w1="115" h1="0" w2="0" h2="-86"/>
+    </edge>
+  </node>
+  <node name="cancelation" x="494" y="90" width="132" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="226" h1="-1" w2="1" h2="-88"/>
+    </edge>
+  </node>
+  <node name="metadata_approved" x="611" y="259" width="140" height="36">
+    <edge>
+      <label x="5" y="-10"/>
+      <bendpoint w1="102" h1="-1" w2="-2" h2="81"/>
+    </edge>
+  </node>
+  <node name="end-state" x="719" y="177" width="132" height="36"/>
+  <deployment graphicalInfoFile="/okm-workflow-sample/src/main/jpdl/.review-approve.gpd.xml" imageFile="/okm-workflow-sample/src/main/jpdl/review-approve.jpg" serverName="localhost" serverPort="8080" serverDeployer="/OpenKM/workflow-register">
+    <classesAndResources>
+      <element type="java" value="/okm-workflow-sample/src/main/java/com/openkm/workflow/action/ChangeMetadataAction.java"/>
+    </classesAndResources>
+    <additionalFiles>
+      <element value="/okm-workflow-sample/src/main/jpdl/forms.xml"/>
+    </additionalFiles>
+  </deployment>
+</root-container>
